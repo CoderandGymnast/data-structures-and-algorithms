@@ -18,5 +18,9 @@ void process(int n, char from, char to, char aux) {
 	process(n-1, aux, to, from);
 }
 
+/*
+* Top down: 1, 2, 3,...n
+*/
+
 
 
