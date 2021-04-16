@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 struct ListNode {
     int data;
     struct ListNode *next;
 };
 
+void printLinkedList(ListNode* head); // NOTE: Must put this after struct.
 int ListLength(struct ListNode *head) {
     struct ListNode* current=head;
     int count=0;
@@ -26,7 +28,8 @@ void InsertInLinkedList(struct ListNode **head,int data,int position) {
     }
     newNode->data=data;
     p=*head;
-    if(position=1) {
+
+    if(position==1) {
         newNode->next=p;
         *head=newNode;
     } else {
@@ -38,6 +41,27 @@ void InsertInLinkedList(struct ListNode **head,int data,int position) {
         q->next=newNode;
         newNode->next=p;
     }
+}
+
+void printLinkedList(ListNode* head) {
+    ListNode* curr=head;
+    while (curr)
+    {
+        printf("%d\n",curr->data);
+        curr=curr->next;
+    }
+    
+}
+
+int main() {
+    ListNode** head=(ListNode**) malloc(sizeof(ListNode*));
+    *head=(ListNode*) malloc(sizeof(ListNode));
+    (*head)->data=0;
+    (*head)->next=NULL;
+    InsertInLinkedList(head, 1, 1);
+    InsertInLinkedList(head, 2, 2);
+    InsertInLinkedList(head, 3, 3);
+    printLinkedList(*head);
 }
 
 void insertAtTheBeginning(struct ListNode *head, struct ListNode *newNode) {
