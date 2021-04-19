@@ -116,6 +116,31 @@ void insertAt(struct ListNode* head, struct ListNode *newNode, int pos) {
     currNode->next=newNode;
 }
 
+void deleteLinkedList(ListNode** head) {
+       if(*head == NULL) {
+        printf("[ERROR]: list empty");
+    }
+ ListNode* curr = *head;
+while(curr!=NULL) {
+    *head=(*head)->next;
+    free(curr);
+    curr=*head;
+}
+}
+
+void DeleteLinkedList(struct ListNode** head) {
+    struct ListNode*auxilaryNode, *iterator;
+    iterator=*head;
+    while (iterator)
+    {
+        auxilaryNode=iterator->next;
+        free(iterator);
+        iterator=auxilaryNode;
+    }
+    *head=NULL;
+    
+}
+
 int main() {
     ListNode** head=(ListNode**) malloc(sizeof(ListNode*));
     *head=(ListNode*) malloc(sizeof(ListNode));
@@ -129,5 +154,7 @@ int main() {
     printLinkedList(*head);
     InsertInLinkedList(head,1,10);
     deleteNodeFromLinkedList(head, 4);
+    deleteLinkedList(head);
+    printLinkedList(*head);
 }
 
