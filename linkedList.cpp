@@ -7,6 +7,34 @@ struct ListNode {
     struct ListNode *next;
 };
 
+void deleteNodeFromLinkedList(ListNode**head, int pos) {
+    int k = 1;
+    ListNode* p, *q;
+    if(*head==NULL) {
+        printf("[ERROR]: list empty");
+        return;
+    }
+
+    p=*head;
+    if(pos==1) {
+        *head = (*head)->next;
+        free(p);
+        return;
+    }else {
+        while((p!=NULL)&&(k<pos)) {
+            k++;
+            q=p;
+            p=p->next;
+        }
+        if(p==NULL) {
+            printf("[ERROR]: index out of bound");
+        } else {
+            q->next=p->next;
+            free(p);
+        }
+    }
+}
+
 void printLinkedList(ListNode* head); // NOTE: Must put this after struct.
 int ListLength(struct ListNode *head) {
     struct ListNode* current=head;
@@ -38,6 +66,12 @@ void InsertInLinkedList(struct ListNode **head,int data,int position) {
             q=p;
             p=p->next;
         }
+        
+    if(k<position) {
+    printf("[ERROR]: index out of bound");
+    return;
+}
+
         q->next=newNode;
         newNode->next=p;
     }
@@ -51,17 +85,6 @@ void printLinkedList(ListNode* head) {
         curr=curr->next;
     }
     
-}
-
-int main() {
-    ListNode** head=(ListNode**) malloc(sizeof(ListNode*));
-    *head=(ListNode*) malloc(sizeof(ListNode));
-    (*head)->data=0;
-    (*head)->next=NULL;
-    InsertInLinkedList(head, 1, 1);
-    InsertInLinkedList(head, 2, 2);
-    InsertInLinkedList(head, 3, 3);
-    printLinkedList(*head);
 }
 
 void insertAtTheBeginning(struct ListNode *head, struct ListNode *newNode) {
@@ -92,3 +115,19 @@ void insertAt(struct ListNode* head, struct ListNode *newNode, int pos) {
     newNode->next=succNode;
     currNode->next=newNode;
 }
+
+int main() {
+    ListNode** head=(ListNode**) malloc(sizeof(ListNode*));
+    *head=(ListNode*) malloc(sizeof(ListNode));
+    (*head)->data=0;
+    (*head)->next=NULL;
+    InsertInLinkedList(head, 1, 1);
+    InsertInLinkedList(head, 2, 2);
+    InsertInLinkedList(head, 3, 3);
+    deleteNodeFromLinkedList(head, 1);
+    deleteNodeFromLinkedList(head, 2);
+    printLinkedList(*head);
+    InsertInLinkedList(head,1,10);
+    deleteNodeFromLinkedList(head, 4);
+}
+
