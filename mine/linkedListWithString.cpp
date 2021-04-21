@@ -14,7 +14,7 @@ struct Node
 int main()
 {
     // Solution I; 
-    Node *head = (Node *)malloc(sizeof(Node));
+    Node *head;
     Node instance = {"sonic", NULL};
     head = &instance;
     cout << head->data << endl;
