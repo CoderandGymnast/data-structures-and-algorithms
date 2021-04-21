@@ -11,9 +11,16 @@ struct Node
     Node *next;
 };
 
-int main() {
-   Node *head = (Node*) malloc(sizeof(Node));
-   Node instance = {"sonic", NULL};
-   head=&instance;
-   cout << head->data << endl;
+int main()
+{
+    // Solution I; 
+    Node *head = (Node *)malloc(sizeof(Node));
+    Node instance = {"sonic", NULL};
+    head = &instance;
+    cout << head->data << endl;
+
+    // Solution II: 
+    Node *node = new Node();
+    node->data = "sonic";
+    cout << node->data << endl;
 }
