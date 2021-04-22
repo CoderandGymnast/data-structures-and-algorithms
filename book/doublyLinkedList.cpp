@@ -52,13 +52,13 @@ void DLLInsert(DLLNode **head, int data, int position)
     }
 }
 
-void print(DLLNode **head)
+void print(DLLNode **x)
 {
-    DLLNode *p = *head;
-    while (p)
+    //printf("%p\n", &x);
+    while (*x)
     {
-        printf("%d\n", p->data);
-        p = p->next;
+        printf("%d\n", (*x)->data);
+        *x = (*x)->next;
     }
 }
 
@@ -74,6 +74,14 @@ int main()
     DLLInsert(head, 2, 2);
     DLLInsert(head, 3, 3);
     DLLInsert(head, 4, 4);
-    DLLInsert(head, 6, 7);
+    //DLLInsert(head, 6, 7);
+
+    //printf("%p\n", *head);
+    //printf("%p\n", &(*head));
+    //printf("%p\n", head);
+    //printf("%p\n", &head);
+    print(head);
     print(head);
 }
+
+// NOTE: head: [abc]->[xyz]->[...]
