@@ -39,9 +39,9 @@ void DLLInsert(DLLNode **head, int data, int position)
             temp = temp->next;
             k++;
         }
-        if (k != position)
+        if (k != position - 1)
         {
-            printf("[ERROR]: index out of bound");
+            printf("[ERROR]: index out of bound\n");
         }
         newNode->next = temp->next;
         newNode->prev = temp;
@@ -50,4 +50,30 @@ void DLLInsert(DLLNode **head, int data, int position)
         temp->next = newNode;
         return;
     }
+}
+
+void print(DLLNode **head)
+{
+    DLLNode *p = *head;
+    while (p)
+    {
+        printf("%d\n", p->data);
+        p = p->next;
+    }
+}
+
+int main()
+{
+    DLLNode **head = (DLLNode **)malloc(sizeof(DLLNode *));
+    *head = (DLLNode *)malloc(sizeof(DLLNode));
+    (*head)->data = 0;
+    (*head)->prev = NULL;
+    (*head)->next = NULL;
+
+    DLLInsert(head, 1, 1);
+    DLLInsert(head, 2, 2);
+    DLLInsert(head, 3, 3);
+    DLLInsert(head, 4, 4);
+    DLLInsert(head, 6, 7);
+    print(head);
 }
