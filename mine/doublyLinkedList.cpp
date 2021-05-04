@@ -19,7 +19,7 @@ void DLLInsert(DLLNode **head, int data, int position)
         return;
     }
     newNode->data = data;
-    if (position == 1) // can use to init linked list.
+    if (position == 1)
     {
         newNode->next = *head;
         newNode->prev = NULL;
@@ -54,7 +54,6 @@ void DLLInsert(DLLNode **head, int data, int position)
 
 void print(DLLNode **head)
 {
-    //printf("%p\n", &x);
     DLLNode* p = *head;
     while (p)
     {
@@ -65,8 +64,7 @@ void print(DLLNode **head)
 
 void DLLDelete(DLLNode **head, int position)
 {
-    DLLNode *temp, *temp2;
-    temp = *head;
+    DLLNode *p = *head;
     int k = 1;
     if (*head == NULL)
     {
@@ -81,14 +79,14 @@ void DLLDelete(DLLNode **head, int position)
         if (*head != NULL)
         {
             (*head)->prev = NULL;
-            free(temp);
+            free(p);
             return;
         }
     }
 
-    while (k < position && temp->next != NULL)
+    while (k < position && p->next != NULL)
     {
-        temp = temp->next;
+        p = p->next;
         k++;
     }
 
@@ -98,12 +96,10 @@ void DLLDelete(DLLNode **head, int position)
         return;
     }
 
-    temp2 = temp->prev;
-    temp2->next = temp->next;
+    p->prev->next = p->next;
+    if(p->next) p->next->prev = p->prev;
 
-    if (temp->next)
-        temp->next->prev = temp2;
-    free(temp);
+    free(p);
 }
 
 int main()
@@ -118,12 +114,6 @@ int main()
     DLLInsert(head, 2, 2);
     DLLInsert(head, 3, 3);
     DLLInsert(head, 4, 4);
-    //DLLInsert(head, 6, 7);
-
-    //printf("%p\n", *head);
-    //printf("%p\n", &(*head));
-    //printf("%p\n", head);
-    //printf("%p\n", &head);
     print(head);
 
     DLLDelete(head, 1);
@@ -142,5 +132,3 @@ int main()
 
     DLLDelete(head, 3);
 }
-
-// NOTE: head: [abc]->[xyz]->[...]
