@@ -8,13 +8,17 @@ struct CLLNode
 };
 
 int len(CLLNode *head);
-int main() {
-    CLLNode *head= (CLLNode*) malloc(sizeof(CLLNode));
+void print(CLLNode *head);
+
+int main()
+{
+    CLLNode *head = (CLLNode *)malloc(sizeof(CLLNode));
     head->data = 1;
     head->next = head;
 
     int numNodes = len(head);
-    printf("%d", numNodes);
+    printf("Length: %d\n", numNodes);
+    print(head);
 }
 
 /* Use address to determine the end of circular linked list. */
@@ -31,4 +35,16 @@ int len(CLLNode *head)
     } while (curr != head);
 
     return count;
+}
+
+void print(CLLNode *head)
+{
+    CLLNode *curr = head;
+    if (head == NULL)
+        return;
+    do
+    {
+        printf("%d\n", curr->data);
+        curr = curr->next;
+    } while (curr != head);
 }
