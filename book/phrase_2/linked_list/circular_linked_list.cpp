@@ -13,24 +13,28 @@ struct CLLNode
 int len(CLLNode *head);
 void print(CLLNode **head);
 void insertAtEnd(CLLNode **head, int data);
-void insertAtBegin(CLLNode **head, int data);
+void insertAtBegin(CLLNode *head, int data);
 
 int main()
 {
-    // CLLNode **head = (CLLNode **)malloc(sizeof(CLLNode *));
+    CLLNode *head = (CLLNode *)malloc(sizeof(CLLNode));
     // *head = (CLLNode *)malloc(sizeof(CLLNode));
     // (*head)->data = 0;
     // (*head)->next = *head;
 
+    printf("Address of head in main: %p\n", &head);
+    insertAtBegin(head, -1);
+    // print(head);
+
     // if (*head == NULL) printf("*head is NULL");
     // else printf("*head is not NULL");
+    //cout << "*head: " << *head << endl;
+    // CLLNode **head = (CLLNode **)malloc(sizeof(CLLNode *));
+    // *head = NULL;
     // cout << "*head: " << *head << endl;
-    CLLNode **head = (CLLNode **)malloc(sizeof(CLLNode *));
-    *head = NULL;
-    cout << "*head: " << *head << endl;
-    insertAtEnd(head, 1);
-    insertAtBegin(head, -1);
-    print(head);
+    // insertAtEnd(head, 1);
+    // insertAtBegin(head, -1);
+    // print(head);
 }
 
 /* Use address to determine the end of circular linked list. */
@@ -89,9 +93,11 @@ void insertAtEnd(CLLNode **head, int data)
     curr->next = newNode;
 }
 
-void insertAtBegin(CLLNode **head, int data)
+void insertAtBegin(CLLNode *head, int data)
 {
-    CLLNode *currNode = *head;
+
+    printf("Address of head inside function: %p", &head);
+    CLLNode *currNode = head;
     CLLNode *newNode = (CLLNode *)malloc(sizeof(CLLNode));
 
     if (!newNode)
@@ -102,17 +108,17 @@ void insertAtBegin(CLLNode **head, int data)
 
     newNode->data = data;
 
-    if (*head == NULL)
+    if (head == NULL)
     {
-        *head = newNode;
+        head = newNode;
         newNode->next = newNode;
         return;
     }
 
-    while (currNode->next != *head)
+    while (currNode->next != head)
         currNode = currNode->next;
 
-    newNode->next = *head;
+    newNode->next = head;
     currNode->next = newNode;
-    *head = newNode;
+    head = newNode;
 }
