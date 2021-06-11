@@ -16,6 +16,7 @@ void insertAtEnd(CLLNode **head, int data);
 void insertAtBegin(CLLNode **head, int data);
 void deleteLastNode(CLLNode **head);
 void deleteFrontNode(CLLNode **head); 
+void deleteNode(CLLNode **head, int i); 
 
 int main()
 {
@@ -27,10 +28,15 @@ int main()
     insertAtBegin(head, 0);
     print(head);
 
-    deleteLastNode(head);
-    print(head);
+    // deleteLastNode(head);
+    // print(head);
 
-    deleteFrontNode(head);
+    // deleteFrontNode(head);
+    // print(head);
+
+    deleteNode(head, 3);
+    print(head);
+    deleteNode(head, 4);
     print(head);
 }
 
@@ -53,6 +59,9 @@ int len(CLLNode *head)
 void print(CLLNode **head)
 {
     CLLNode *curr = *head;
+
+    printf("\n");
+
     if (head == NULL)
         return;
     do
@@ -164,4 +173,25 @@ void deleteFrontNode(CLLNode **head) {
     free(temp);
     return;
 
+}
+
+void deleteNode(CLLNode **head, int i) {
+    CLLNode *currNode = *head, *temp;
+
+    if(!*head) {
+        printf("[ERROR]: list empty");
+        return;
+    }
+
+    for(int c = 0; c < i ; c++) {
+        temp = currNode;
+        currNode = currNode->next;
+        if(currNode == *head) {
+            printf("[ERROR]: index out of bound");
+            return;
+        }
+    }
+
+    temp->next = currNode->next;
+    free(currNode);
 }
