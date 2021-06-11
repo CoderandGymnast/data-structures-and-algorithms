@@ -14,7 +14,10 @@ int len(CLLNode *head);
 void print(CLLNode **head);
 void insertAtEnd(CLLNode **head, int data);
 void insertAtBegin(CLLNode **head, int data);
-void insertAtMiddle(CLLNode** head, int data, int possition);
+void insertAtMiddle(CLLNode **head, int data, int possition);
+void deleteTheLast(CLLNode **head);
+void deleteTheFirst(CLLNode **head);
+void deleteNode(CLLNode **head, int i);
 
 int main()
 {
@@ -23,19 +26,28 @@ int main()
     // CLLNode**: Data structure.
     // *: Operator.
     // head: Pointer.
-    CLLNode** head = (CLLNode **)malloc(sizeof(CLLNode*)); // head: [A] - [NULL] 
-    printf("Address of head: %p\n", &head);
-    printf("Value of head: %p\n", head); // A
-    printf("Address of the space memory pointed by head: %p\n", &(*head)); // A
-    * head = NULL;
-    printf("Value of *head: %p\n", (*head)); // B
+    CLLNode **head = (CLLNode **)malloc(sizeof(CLLNode *)); // head: [A] - [NULL]
+    // printf("Address of head: %p\n", &head);
+    // printf("Value of head: %p\n", head); // A
+    // printf("Address of the space memory pointed by head: %p\n", &(*head)); // A
+    *head = NULL;
+    // printf("Value of *head: %p\n", (*head)); // B
 
-    insertAtBegin(head, 0);
-
+    insertAtEnd(head, 1);
     insertAtEnd(head, 2);
+    insertAtEnd(head, 3);
+    insertAtBegin(head, 0);
+    print(head);
 
-    insertAtMiddle(head, 1, 1);
+    // deleteTheLast(head);
+    // print(head);
 
+    // deleteTheFirst(head);
+    // print(head);
+
+    deleteNode(head, 3);
+    print(head);
+    deleteNode(head, 3);
     print(head);
 }
 
@@ -123,9 +135,9 @@ void insertAtBegin(CLLNode **head, int data)
     *head = newNode;
 }
 
-void insertAtMiddle(CLLNode** head, int data, int possition)
+void insertAtMiddle(CLLNode **head, int data, int possition)
 {
-        // The point is to use the address of *head.
+    // The point is to use the address of *head.
 
     CLLNode *curr = *head;
     CLLNode *newNode = (CLLNode *)malloc(sizeof(CLLNode));
@@ -147,9 +159,72 @@ void insertAtMiddle(CLLNode** head, int data, int possition)
     int i = 1;
     while (i != possition)
         curr = curr->next;
-        i ++;
+    i++;
 
     newNode->next = curr->next;
     curr->next = newNode;
 };
 
+void deleteTheLast(CLLNode **head)
+{
+    CLLNode *curr, *temp = *head;
+
+    if (!*head)
+    {
+        printf("List is empty");
+        return;
+    }
+
+    while (curr->next != *head)
+    {
+        temp = curr;
+        curr = curr->next;
+    }
+    temp->next = curr->next;
+    free(curr);
+}
+
+void deleteTheFirst(CLLNode **head)
+{
+    CLLNode *curr, *temp = *head;
+    if (*head == NULL)
+    {
+        printf("List is empty");
+        return;
+    }
+
+    while (curr->next != *head)
+    {
+        curr = curr->next;
+    }
+
+    curr->next = temp->next;
+    *head = temp->next;
+    free(temp);
+    return;
+}
+
+void deleteNode(CLLNode **head, int i)
+{
+    CLLNode *currNode = *head, *temp;
+
+    if (!*head)
+    {
+        printf("[ERROR]: list empty");
+        return;
+    }
+
+    for (int c = 0; c < i; c++)
+    {
+        temp = currNode;
+        currNode = currNode->next;
+        if (currNode == *head)
+        {
+            printf("[ERROR]: index out of bound");
+            return;
+        }
+    }
+
+    temp->next = currNode->next;
+    free(currNode);
+}
