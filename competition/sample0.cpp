@@ -23,7 +23,7 @@ int main()
     for (int i = 0; i < edges; ++i)
     {
         cin >> x >> y;
-
+        // Undirected graph.
         adj[x].push_back(y);
         adj[y].push_back(x);
     }
