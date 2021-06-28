@@ -19,3 +19,8 @@
 - Best case: O(nlogn).
 - Average case: O(nlogn).
 - Worst case: O(n^2).
+
+## I.4. Brute-force:
+### I.4.1. Theories:
+### I.4.2. Problems: 
+- [1-medium: Brute-force + Recursion](https://leetcode.com/contest/biweekly-contest-55/problems/maximum-alternating-subsequence-sum/)
