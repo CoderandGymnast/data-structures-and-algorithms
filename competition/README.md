@@ -25,3 +25,8 @@
 - Time complexity: O(logn).
 - [2^logn vs. n](https://www.quora.com/How-do-I-prove-2-log-n-n).
 - Proof of time complexity: [Link](https://www.youtube.com/watch?v=6ysjqCUv3K4) - Time: 8:00.
+
+## I.5. Brute-force:
+### I.4.1. Theories:
+### I.4.2. Problems: 
+- [1-medium: Brute-force + Recursion](https://leetcode.com/contest/biweekly-contest-55/problems/maximum-alternating-subsequence-sum/)
