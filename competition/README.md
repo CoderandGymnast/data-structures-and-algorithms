@@ -19,3 +19,9 @@
 - Best case: O(nlogn).
 - Average case: O(nlogn).
 - Worst case: O(n^2).
+
+## I.4. Binary search: 
+### I.4.1. Theories: 
+- Time complexity: O(logn).
+- [2^logn vs. n](https://www.quora.com/How-do-I-prove-2-log-n-n).
+- Proof of time complexity: [Link](https://www.youtube.com/watch?v=6ysjqCUv3K4) - Time: 8:00.
