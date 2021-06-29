@@ -1,2 +1,2 @@
 # Data structures notes: 
-## 0. Set: 
+## 0,1. Set: 
