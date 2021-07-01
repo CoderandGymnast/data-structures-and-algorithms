@@ -1,0 +1,24 @@
+# Time complexity: 
+## I. Loops: 
+* Code snippet A:
+```C++
+int primeFactors[4]={2,3,4,5};
+for(int&p:primeFactors) {
+while(!(n%p)) {
+	n/=p;
+}
+}
+return n==1;
+```
+
+* Code snippet B: 
+```C++
+for(int i=0; i<6;++i){
+while(!(n%i)) {
+	n/=i;
+}
+}
+return n==1;
+```
+
+> B is faster than A because of the for loop.
