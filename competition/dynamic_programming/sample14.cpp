@@ -32,7 +32,7 @@ int pow[MAX_POW+1]={1};
                            mid / (i * j)) - pow;
       }
     }
- 
+cout << cnt << endl; 
     if (cnt < n)
       l = mid + 1;
     else
@@ -44,8 +44,7 @@ int pow[MAX_POW+1]={1};
  
 int main()
 {
-    int n = 150;
-   
+    int n = 10;
     cout << nthUglyNumber(n);
     return 0;
 }
