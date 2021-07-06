@@ -165,7 +165,7 @@ addElement(0, 0);
 addElement(0,1);
 addElement(0,2);
 /* TODO: 
-* Add more elements than the block size of the very first block at position 0.
+* Add more elements than the block size of the head block at position 0.
 * Add position != 0 (Hint: Errors in the code block k!=0).
 */
 
