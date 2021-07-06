@@ -145,12 +145,12 @@ void print()
         printf("Block no. %d: ", ++cnt);
         headNode = curBlock->head;
         curNode = headNode;
+        do
         {
             printf("%d ", curNode->value);
             curNode = curNode->next;
-        }
-        while (curNode != headNode)
-            curBlock = curBlock->next;
+        } while (curNode != headNode);
+        curBlock = curBlock->next;
         return;
         printf("\n");
     }
@@ -158,8 +158,8 @@ void print()
 
 int main()
 {
-    blockSize=5;
-    addElement(0, 1); 
-    addElement(0, 0); 
+    blockSize = 5;
+    addElement(0, 1);
+    addElement(0, 0);
     print();
 }
