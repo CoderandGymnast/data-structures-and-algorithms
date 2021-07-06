@@ -158,6 +158,8 @@ void print()
 
 int main()
 {
-    addElement(0, 1); // TODO: add more than 1 element.
+    blockSize=5;
+    addElement(0, 1); 
+    addElement(0, 0); 
     print();
 }
