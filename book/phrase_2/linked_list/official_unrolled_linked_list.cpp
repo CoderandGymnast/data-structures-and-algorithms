@@ -105,11 +105,13 @@ void addElement(int k, int x)
     {
         if (k == 0)
         {
-            p = headBlock->head;
-            q = p->next;
-            p->next = initNode(x);
-            p->next->next = q;
-            headBlock->head = p->next;
+            Node* newHead=initNode(x);
+            newHead->next=headBlock->head;
+            Node* currHead=headBlock->head;
+            Node* slideNode=currHead;
+            while(slideNode->next!=currHead) slideNode=slideNode->next;
+            slideNode->next=newHead;
+            headBlock->head=newHead;
             headBlock->nodeCount++;
             shift(headBlock);
         }
@@ -158,8 +160,14 @@ void print()
 
 int main()
 {
-    blockSize = 5;
-    addElement(0, 1);
-    addElement(0, 0);
+    blockSize =2;
+addElement(0, 0);
+addElement(0,1);
+addElement(0,2);
+/* TODO: 
+* Add more elements than the block size of the very first block at position 0.
+* Add position != 0 (Hint: Errors in the code block k!=0).
+*/
+
     print();
 }
